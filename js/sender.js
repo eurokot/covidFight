@@ -1,9 +1,10 @@
-function send_post(url, name, data) {
+function send_post(url, name, data = '') {
 	var form = '';
-	
-	$.each(data.split('.'), function(k, v) {
-		form += '&' + v + '=' + $('#' + v).val();
-	});
+	if(data) {
+		$.each(data.split('.'), function(k, v) {
+			form += '&' + v + '=' + $('#' + v).val();
+		});
+	}
 
 	$.ajax({
 		type: 'POST',
@@ -11,6 +12,7 @@ function send_post(url, name, data) {
 		data: name + '_f=1' + form,
 		cache: false,
 		success: function(result) {
+			console.log(result);
 			obj = jQuery.parseJSON(result);
 
 			if (obj.go)
