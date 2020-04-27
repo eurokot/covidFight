@@ -6,7 +6,7 @@ if($_POST['register_f']){
     if (mysqli_num_rows(mysqli_query($connection, "SELECT `id` FROM `login` WHERE `username` = '$_POST[login]'")) )
         message('Данное имя пользователя уже зарегистрированно');
 
-    mysqli_query($connection, "INSERT INTO `login` VALUES ('', '$_POST[login]', '$_POST[pwd]', 0, 1)");
+    mysqli_query($connection, "INSERT INTO `login` VALUES ('', '$_POST[login]', '$_POST[pwd]', 0, 1, 0, 0, 0, 0, 0)");
 
     message('Регистрация завершена');
 }

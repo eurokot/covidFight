@@ -6,8 +6,8 @@
             <button id="click" onclick="move()"></button>
             <div class="nav">
                 <button id="logout" onclick="send_post('account', 'logout')">Выход</button>
-                <button id="info">Достижения</button>
-                <button id="magazine">Магазин</button>
+                <button id="info" onclick="go('progress')">Достижения</button>
+                <button id="magazine" onclick="go('magazine')">Магазин</button>
             </div>
         </main>
     </div>
