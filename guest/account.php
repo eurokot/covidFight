@@ -3,12 +3,17 @@
 if($_POST['register_f']){
     db();
 
+
     if (mysqli_num_rows(mysqli_query($connection, "SELECT `id` FROM `login` WHERE `username` = '$_POST[login]'")) )
         message('Данное имя пользователя уже зарегистрированно');
 
-    mysqli_query($connection, "INSERT INTO `login` VALUES ('', '$_POST[login]', '$_POST[pwd]', 0, 1, 0, 0, 0, 0, 0)");
-
-    message('Регистрация завершена');
+    if(!empty($_POST['login']) and !empty($_POST['pwd'])){
+        mysqli_query($connection, "INSERT INTO `login` VALUES ('', '$_POST[login]', '$_POST[pwd]', 0, 1, 0, 0, 0, 0, 0)");
+        message('Регистрация завершена');
+    }
+    else{
+        message('Заполните все поля');
+    }
 }
 else if($_POST['login_f']){
     db();
