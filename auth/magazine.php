@@ -40,8 +40,8 @@
             </div>
             <div class="nav">
                 <a id="logout" href="/profile">Назад</a>
-                <button id="info">Достижения</button>
-                <button id="magazine">Магазин</button>
+                <button id="info" onclick="go('progress')">Достижения</button>
+                <button id="magazine" onclick="go('magazine')">Магазин</button>
             </div>
         </main>
     </div>
