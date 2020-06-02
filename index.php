@@ -38,12 +38,17 @@ function bottom(){
     include 'html/bottom.php';
 }
 
-function location($url){
-    exit(header("location: /$url"));
+function message($title, $text, $status){
+    echo json_encode(array(
+        'title' => $title,
+        'text' => $text,
+        'status' => $status
+    ));
 }
 
-function message($text){
-    exit('{"message":"'.$text.'"}');
+
+function location($url){
+    exit(header("location: /$url"));
 }
 
 function go($url){

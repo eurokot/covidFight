@@ -1,33 +1,36 @@
 <?
+db();
 
 if($_POST['register_f']){
-    db();
-
 
     if (mysqli_num_rows(mysqli_query($connection, "SELECT `id` FROM `login` WHERE `username` = '$_POST[login]'")) )
-        message('Данное имя пользователя уже зарегистрированно');
+        message('Ошибка','Данное имя пользователя уже зарегистрированно', 'error');
 
     if(!empty($_POST['login']) and !empty($_POST['pwd'])){
         mysqli_query($connection, "INSERT INTO `login` VALUES ('', '$_POST[login]', '$_POST[pwd]', 0, 1, 0, 0, 0, 0, 0)");
-        message('Регистрация завершена');
+        message('Успешно', 'Регистрация завершена', 'success');
     }
     else{
-        message('Заполните все поля');
+        message('Ошибка', 'Заполните все поля', 'error');
     }
 }
 else if($_POST['login_f']){
     db();
-
-    $msfind =  "SELECT * FROM `login` WHERE `username` = '$_POST[login]' and `password` = '$_POST[pwd]';";
-    $query = mysqli_query($connection, $msfind);
-    if(!mysqli_num_rows($query))
-        message('Проверьте правильность данных');
+    if(!empty($_POST['login']) and !empty($_POST['pwd'])){
+        $msfind =  "SELECT * FROM `login` WHERE `username` = '$_POST[login]' and `password` = '$_POST[pwd]';";
+        $query = mysqli_query($connection, $msfind);
+        if(!mysqli_num_rows($query))
+            message('Ошибка', 'Проверьте правильность данных', 'error');
+        
+        $row = mysqli_fetch_assoc($query);
     
-    $row = mysqli_fetch_assoc($query);
-
-    foreach ($row as $key => $val)
-        $_SESSION[$key] = $val;
-
-    go('profile');
+        foreach ($row as $key => $val)
+            $_SESSION[$key] = $val;
+    
+        go('profile');
+    }
+    else{
+        message('Ошибка', 'Заполните все поля', 'error');
+    }
 }
 ?>

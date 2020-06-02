@@ -17,7 +17,7 @@ function send_post(url, name, data = '') {
                 go(obj.go);
             }
             else{
-                alert(obj.message);
+                swal(obj.title, obj.text, obj.status);
             }
         }
     }); 
@@ -42,10 +42,10 @@ function buy(url, name, data = '') {
         cache: false,
         success: function(result) {
             if(result.length == 35){
-                alert("Недостаточно бактерий");
+                swal('Ошибка', 'Недостаточно бактерий', 'error');
             }
             else if(result.length == 28){
-                alert("Вы уже здоровы!");
+                swal('Успешно', 'Вы уже здоровы', 'success');
             }
             else{
                 $('#display_magazine').load('update_magazine');
